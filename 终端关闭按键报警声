@@ -1,23 +1,7 @@
 方法一：
 
-输入命令 vi /etc/inputrc ，回车进入编辑，找到 setbell-style none 把前面的注释去掉，保存退出，然后重启系统，嘟嘟声不再出现。
-
-
-
-方法二：
-
-输入命令 vi /etc/profile，回车编辑该文件，添加 setterm-blength 0 到该文件，保存退出，然后重启系统，嘟嘟声不再出现。
-
-
-----------------------------------------------------------------------------------------------------------------------------
-
-
-修改vim /etc/inputrc
-
-找到set bell-style none 将前面的＃去掉，之后重启系统即可解决操作命令行时tab键和backspace键的声音问题。但是在用vim时，还是会有哔哔声。
-
-
-
+输入命令 vi /etc/inputrc ，回车进入编辑，找到 setbell-style none 把前面的＃去掉，
+后重启系统即可解决操作命令行时tab键和backspace键的声音问题。但是在用vim时，还是会有哔哔声。
 若不见效可以通过下面的方式解决下
 
 bell-style的取值范围是:none,visible, audible，
@@ -27,6 +11,13 @@ vi /etc/inputrc中的setbell-style visible前的#去掉，若找不到这个参�
 
 
 方法二：
+
+输入命令 vi /etc/profile，回车编辑该文件，添加 setterm-blength 0 到该文件，保存退出，然后重启系统，嘟嘟声不再出现。
+
+
+
+
+方法三：
 
 以root身份登录然后执行rmmod pcspkr，当前就不会再有哔哔声，但重启就会失效。
 
