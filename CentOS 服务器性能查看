@@ -1,0 +1,140 @@
+uptime
+uptime可以对cpu使用情况进行监控。
+
+[nukix@bogon ~]$ uptime
+# 当前时间	系统运行时间	当前登录用户数	系统平均负载
+ 18:56:53 up 1 day,  3:55,  2 users,  load average: 0.00, 0.01, 0.05
+
+——————————————————————————————————————————————————————————————————————
+
+free
+free可以对内存和交换分区进行监控。
+[nukix@bogon ~]$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           977M        680M         76M        8.7M        220M        100M
+Swap:          1.5G        397M        1.1G
+
+——————————————————————————————————————————————————————————————————————
+
+
+df
+df可以查看系统磁盘的使用情况。
+[nukix@bogon ~]$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3        14G  5.8G  7.5G  44% /
+devtmpfs        475M     0  475M   0% /dev
+tmpfs           489M  116K  489M   1% /dev/shm
+tmpfs           489M   21M  469M   5% /run
+tmpfs           489M     0  489M   0% /sys/fs/cgroup
+/dev/sda1       297M  192M  106M  65% /boot
+tmpfs            98M   28K   98M   1% /run/user/1000
+
+——————————————————————————————————————————————————————————————————————————————————
+
+ip
+ip可以查看网卡信息。
+
+# 查看所有网卡信息
+[nukix@bogon ~]$ ip a s
+
+# 查看某一个网卡信息
+[nukix@bogon ~]$ ip -s link show eno16777736
+
+——————————————————————————————————————————————————————————————————————————————————
+
+netstat
+netstat可以用于查看端口信息。
+
+[nukix@bogon ~]$ netstat -ant
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN     
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN     
+tcp6       0      0 :::8009                 :::*                    LISTEN     
+tcp6       0      0 :::111                  :::*                    LISTEN     
+tcp6       0      0 :::8080                 :::*                    LISTEN     
+tcp6       0      0 :::22                   :::*                    LISTEN     
+tcp6       0      0 ::1:631                 :::*                    LISTEN     
+tcp6       0      0 ::1:25                  :::*                    LISTEN     
+tcp6       0      0 127.0.0.1:8005          :::*                    LISTEN  
+
+——————————————————————————————————————————————————————————————————————————————————
+
+ps
+ps可用于查看进程信息。
+
+[nukix@bogon ~]$ ps -ef
+UID         PID   PPID  C STIME TTY          TIME CMD
+root          1      0  0 Jun18 ?        00:00:18 /usr/lib/systemd/systemd --sys
+root          2      0  0 Jun18 ?        00:00:00 [kthreadd]
+root          3      2  0 Jun18 ?        00:00:00 [ksoftirqd/0]
+root          7      2  0 Jun18 ?        00:00:00 [migration/0]
+root          8      2  0 Jun18 ?        00:00:00 [rcu_bh]
+root          9      2  0 Jun18 ?        00:00:00 [rcuob/0]
+root         10      2  0 Jun18 ?        00:00:00 [rcuob/1]
+root         11      2  0 Jun18 ?        00:00:00 [rcuob/2]
+root         12      2  0 Jun18 ?        00:00:00 [rcuob/3]
+root         13      2  0 Jun18 ?        00:00:00 [rcuob/4]
+root         14      2  0 Jun18 ?        00:00:00 [rcuob/5]
+root         15      2  0 Jun18 ?        00:00:00 [rcuob/6]
+root         16      2  0 Jun18 ?        00:00:00 [rcuob/7]
+root         17      2  0 Jun18 ?        00:00:00 [rcuob/8]
+root         18      2  0 Jun18 ?        00:00:00 [rcuob/9]
+root         19      2  0 Jun18 ?        00:00:00 [rcuob/10]
+———————————————————————————————————————————————————————————————————————————————
+
+top
+top可以查看进程信息。
+
+[nukix@bogon ~]$ top
+top - 02:29:40 up 1 day, 11:28,  2 users,  load average: 0.19, 0.09, 0.07
+Tasks: 431 total,   3 running, 428 sleeping,   0 stopped,   0 zombie
+# Cpu(s) 当前CPU状态 us 用户进程占用CPU比例 sy 内核进程占用CPU比例
+# id 空闲CPU比例 wa IO等待所占用的CPU时间比例 wa占用超过30%表示IO压力很大
+%Cpu(s): 21.5 us,  4.0 sy,  0.0 ni, 74.4 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+# Mem 内存状态 total 总的内存大小 free 剩余 used 已使用 buffers 目录缓存
+KiB Mem :  1001332 total,   168952 free,   551232 used,   281148 buff/cache
+# 如果 Swap 的 used 很高，则表示系统内存不足
+KiB Swap:  1572860 total,   994548 free,   578312 used.   250340 avail Mem 
+
+   PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND     
+ 62894 nukix     20   0 2768572 271296  28828 S 13.6 27.1   6:55.73 gnome-shell 
+  1880 root      20   0  265340  43084   6556 S  8.0  4.3   4:34.94 Xorg        
+  4727 nukix     20   0  686700  18040   8288 S  2.7  1.8   0:07.27 gnome-term+ 
+ 40137 nukix     20   0  162288   2592   1592 R  0.7  0.3   0:00.19 top         
+  2879 nukix     20   0  104472    544    156 S  0.3  0.1   0:09.94 dbus-daemon 
+  3099 nukix     20   0 1029896  24744   8432 S  0.3  2.5   0:08.39 nautilus    
+  3588 nukix     20   0 2491960  47012      0 S  0.3  4.7   2:56.36 java        
+ 37073 root      20   0  318064   1540   1132 S  0.3  0.2   1:29.43 vmtoolsd    
+     1 root      20   0  193928   4488   2484 S  0.0  0.4   0:18.90 systemd     
+     2 root      20   0       0      0      0 S  0.0  0.0   0:00.04 kthreadd    
+     3 root      20   0       0      0      0 S  0.0  0.0   0:00.54 ksoftirqd/0 
+     7 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 migration/0 
+     8 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcu_bh       
+—————————————————————————————————————————————————————————————————————————————————————
+
+iostat
+iostat用于查看IO使用情况。
+
+# 监控输入输出状态，-x表示显示所有参数信息，1表示每隔1秒监控一次，2表示共监控2次
+[nukix@bogon ~]$ iostat -x 1 2
+Linux 3.10.0-327.el7.x86_64 (bogon) 	06/20/2019 	_x86_64_	(1 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           1.50    0.00    0.87    0.03    0.00   97.60
+
+Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+sda               2.41     3.75    6.93    4.44   351.23    87.78    77.26     0.01    0.68    0.71    0.65   0.17   0.19
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           4.00    0.00    1.00    0.00    0.00   95.00
+
+Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00
+—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+
